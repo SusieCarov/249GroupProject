@@ -1,7 +1,7 @@
 
 TasksList = new Mongo.Collection("tasks");
 
-var tasks = [
+var tasksArray = [
   {text: "Tried a dining hall I don’t normally go to", category: "Eat" },
   {text: "Walk around lake", category: "Health" },
   {text: "Swing on swing", category: "Play" },
@@ -128,12 +128,12 @@ if(Meteor.isServer){
 
     //method
     'insertTaskData': function(){
-      for (i in tasks) {
+      for (i in tasksArray) {
         console.log("inside for loop");
           TasksList.insert({
-            text: tasks[i].text,
+            text: tasksArray[i].text,
             points: 15,
-            category: tasks[i].category
+            category: tasksArray[i].category
           });
       }
     },
