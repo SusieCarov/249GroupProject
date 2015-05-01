@@ -1,0 +1,44 @@
+<head>
+    <title>Tasks Database</title>
+</head>
+
+<body>
+
+<div class="container">
+	<div class="jumbotron">
+	    <h1>Tasks</h1>
+	    <br><br>
+	    {{> allTasks}}
+    </div>
+</div>
+
+</body>
+
+<template name="svgs">
+	<svg height="100" width="100">
+	  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="red"/>
+	</svg>
+</template>
+
+<template name="allTasks">
+
+	Number of Study tasks: {{counterStudy}}
+	<br>
+	Number of Health tasks: {{counterHealth}}
+	<br>
+	Number of Play tasks: {{counterPlay}}
+	<br>
+	Number of Social tasks: {{counterSocial}}
+	<br>
+	Number of Sleep tasks: {{counterSleep}}
+
+	<ul class="list-group">
+	    {{#each task}}
+			<li class="task list-group-item">{{text}}: {{category}} <span class="badge">{{points}}</span></li>
+	    {{/each}}
+	</ul>
+
+
+
+
+</template>
