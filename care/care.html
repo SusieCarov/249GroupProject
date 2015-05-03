@@ -7,7 +7,7 @@
 <div class="container">
 	<div class="jumbotron">
 		<h1>POINTS</h1>
-		{{pointBox}}
+		{{> pointBox}}
 	    <h3>Tasks</h3>
 	    <br><br>
 	    {{> svgs}}
@@ -19,7 +19,7 @@
 </body>
 
 <template name="pointBox">
-	<h1>5</h1>
+	<h1>{{userPoints}}</h1>
 </template>
 
 <template name="svgs">

@@ -85,7 +85,7 @@ if(Meteor.isClient) {
 if(Meteor.isServer){
 
   if (TasksList.find().count() == 0) {
-    Meteor.call('insertTaskData');
+      Meteor.call('insertTaskData');
   }
   
   Meteor.methods({
