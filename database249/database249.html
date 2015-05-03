@@ -6,13 +6,21 @@
 
 <div class="container">
 	<div class="jumbotron">
-	    <h1>Tasks</h1>
+		<h1>POINTS</h1>
+		{{pointBox}}
+	    <h3>Tasks</h3>
+	    <br><br>
+	    {{> svgs}}
 	    <br><br>
 	    {{> allTasks}}
     </div>
 </div>
 
 </body>
+
+<template name="pointBox">
+	<h1>5</h1>
+</template>
 
 <template name="svgs">
 	<svg height="100" width="100">
@@ -37,8 +45,5 @@
 			<li class="task list-group-item">{{text}}: {{category}} <span class="badge">{{points}}</span></li>
 	    {{/each}}
 	</ul>
-
-
-
 
 </template>
