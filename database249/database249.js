@@ -44,15 +44,16 @@ var tasksArray = [
   {text: "Study in Sage Lounge Science Center", category: "Study"}];
 
 if(Meteor.isClient) {
+    Template.pointBox.helpers({
+      
+      'userPoints': function() {
+        return 5
+      },
+
+    });
 
     //helper functions
     Template.allTasks.helpers({
-
-      'userPoints': function() {
-        //points as property in user collection object
-        //return this.points;
-        return 5;
-      },
 
       'task': function() {
         return TasksList.find();
@@ -85,7 +86,14 @@ if(Meteor.isClient) {
 if(Meteor.isServer){
 
   if (TasksList.find().count() == 0) {
-    Meteor.call('insertTaskData');
+     for (i in tasksArray) {
+        console.log("inside for loop");
+          TasksList.insert({
+            text: tasksArray[i].text,
+            points: 15,
+            category: tasksArray[i].category
+          });
+      }
   }
 
   Meteor.methods({
