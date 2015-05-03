@@ -1,1 +1,34 @@
 /* CSS declarations go here */
+
+body {
+  background: url('symphony.png');
+  text-align: center;
+}
+
+h1 {
+  font-family: Pacifico;
+  text-align: center;
+  font-size: 4rem;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+.tasks {
+  position: absolute;
+  top: 15%;
+  left: 28%;
+  z-index: 10;
+}
+
+.taskmenu {
+  position: relative;
+}
+
+h2 {
+  font-family: Pacifico;
+  text-align: center;
+  font-size: 3rem;
+}
