@@ -44,15 +44,16 @@ var tasksArray = [
   {text: "Study in Sage Lounge Science Center", category: "Study"}];
 
 if(Meteor.isClient) {
+    Template.pointBox.helpers({
+      
+      'userPoints': function() {
+        return 5
+      },
+
+    });
 
     //helper functions
     Template.allTasks.helpers({
-
-      'userPoints': function() {
-        //points as property in user collection object
-        //return this.points;
-        return 5;
-      },
 
       'task': function() {
         return TasksList.find();

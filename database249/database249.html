@@ -19,13 +19,34 @@
 </body>
 
 <template name="pointBox">
-	<h1>5</h1>
+	<h1>{{userPoints}}</h1>
 </template>
 
 <template name="svgs">
-	<svg height="100" width="100">
-	  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="red"/>
-	</svg>
+	<div class="flower">
+		<svg class="center" height="100" width = "100">
+			<circle cx="50" cy="50" r="40" fill="white"/>
+		</svg>
+		<svg class="petal1" height="100" width="100">
+		  <circle cx="50" cy="50" r="40" fill="red"/>
+		</svg>
+
+		<svg class="petal2" height="100" width="100">
+		  <circle cx="50" cy="50" r="40" fill="red"/>
+		</svg>
+
+		<svg class="petal3" height="100" width="100">
+		  <circle cx="50" cy="50" r="40" fill="red"/>
+		</svg>
+
+		<svg class="petal4" height="100" width="100">
+		  <circle cx="50" cy="50" r="40" fill="red"/>
+		</svg>
+
+		<svg class="petal5" height="100" width="100">
+		  <circle cx="50" cy="50" r="40" fill="red"/>
+		</svg>
+	</div>
 </template>
 
 <template name="allTasks">
