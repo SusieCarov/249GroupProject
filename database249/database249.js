@@ -85,7 +85,14 @@ if(Meteor.isClient) {
 if(Meteor.isServer){
 
   if (TasksList.find().count() == 0) {
-    Meteor.call('insertTaskData');
+     for (i in tasksArray) {
+        console.log("inside for loop");
+          TasksList.insert({
+            text: tasksArray[i].text,
+            points: 15,
+            category: tasksArray[i].category
+          });
+      }
   }
 
   Meteor.methods({
