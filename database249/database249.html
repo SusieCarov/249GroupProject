@@ -38,10 +38,23 @@
 	Number of Social tasks: {{counterSocial}}
 	<br>
 	Number of Sleep tasks: {{counterSleep}}
-
+	<br>
+	Number of Generic Tasks: {{counterGenTasks}}
+	<br>
+<!-- 	Random tasks: {{randomTasks}}
+ -->
 	<ul class="list-group">
 	    {{#each task}}
 			<li class="task list-group-item">{{text}}: {{category}} <span class="badge">{{points}}</span></li>
+	    {{/each}}
+	</ul>
+
+	<br><br>
+	<h1>Generic Tasks</h1>
+
+	<ul class="list-group">
+	    {{#each genTask}}
+			<li class="task list-group-item">{{content}}: {{category}} <span class="badge">{{points}}</span></li>
 	    {{/each}}
 	</ul>
 
