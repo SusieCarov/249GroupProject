@@ -45,6 +45,24 @@ var tasksArray = [
 
 if(Meteor.isClient) {
 
+    Template.todayTasks.helpers({
+      'studyTask': function() {
+        return TasksList.findOne({category: "Study"});
+      },
+      'sleepTask': function() {
+        return TasksList.findOne({category: "Sleep"});
+      },
+      'socialTask': function() {
+        return TasksList.findOne({category: "Social"});
+      },
+      'playTask': function() {
+        return TasksList.findOne({category: "Play"});
+      },
+      'healthTask': function() {
+        return TasksList.findOne({category: "Health"});
+      }
+    });
+  
     //helper functions
     Template.allTasks.helpers({
 

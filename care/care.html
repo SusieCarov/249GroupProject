@@ -4,12 +4,13 @@
   <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
 
-<body>
-  
+<body>  
   <h1>Wellesley Cares</h1>
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-8">Flower goes here</div>
-    <div class="col-xs-6 col-md-4 taskmenu"> 
+    <div class="col-xs-12 col-sm-6 col-md-7">
+      <img class="flower" src="flower.png" alt="flower">
+    </div>
+    <div class="col-xs-6 col-md-5 taskmenu"> 
       <img class="clipboard" src="clipboard_transparent.png" alt="clipboard"> 
       {{>todayTasks}}
     </div>
@@ -33,12 +34,31 @@
     <h2>Bonus Tasks</h2>
     
     <ol>
-      
-<!--
-        {{#each task}}
-          <li class="player {{selectedClass}}"> {{name}}: {{score}} </li>
-        {{/each}}
--->
+      <li id="social"> 
+        {{#with socialTask}}
+          {{text}}
+        {{/with}}
+      </li>
+      <li id="study"> 
+        {{#with studyTask}}
+          {{text}}
+        {{/with}}
+      </li>
+      <li id="sleep"> 
+        {{#with sleepTask}}
+          {{text}}
+        {{/with}}
+      </li>
+      <li id="health"> 
+        {{#with healthTask}}
+          {{text}}
+        {{/with}}
+      </li>
+      <li id="play"> 
+        {{#with playTask}}
+          {{text}}
+        {{/with}}
+      </li>
     </ol>
   </div>
   

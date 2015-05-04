@@ -8,19 +8,20 @@ body {
 h1 {
   font-family: Pacifico;
   text-align: center;
-  font-size: 4rem;
+  font-size: 8rem;
 }
 
 img {
-  height: auto;
-  max-width: 100%;
+  height: 75vh;
+  margin: -10px;
 }
 
 .tasks {
   position: absolute;
   top: 15%;
-  left: 28%;
+  left: 18%;
   z-index: 10;
+  
 }
 
 .taskmenu {
@@ -31,4 +32,8 @@ h2 {
   font-family: Pacifico;
   text-align: center;
   font-size: 3rem;
+}
+
+.flower {
+  height: 90vh;
 }
