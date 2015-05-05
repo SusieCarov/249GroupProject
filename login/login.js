@@ -5,10 +5,22 @@ PointList = new Mongo.Collection('userPoints');
 
 //if current user display leaderboard template,
 
+
 if (Meteor.isClient) {
     console.log("Hi Client");
-    /*Template.points.events({
-    }) */
+    Template.points.events({
+            "click li":function(event, template){
+                template.$("ul").slideToggle(300);
+
+  }
+    })
+    Template.points.helper({
+        'point': function(){
+            return PointList.find({}, {sort: {studyPoints: -1, playPoints: -1, socialPoints: -1, healthPoints: -1, sleepPoints:-1, user: 1}})
+        },
+        
+        
+    })
 
 
 }
@@ -27,10 +39,12 @@ if (Meteor.isServer) {
     
     Meteor.methods({
         'InitiallizePoints': function(){
-            var currentUserId = Meteor.userId();
+            var user = Meteor.user();
+            if (user && user.emails)
+                var usermail = user.emails[0].address;
            PointList.insert({
                 //study, play, social, health, and sleep;
-                user: currentUserId,
+                user: usermail,
                 studyPoints:0,
                 playPoints: 0, 
                 socialPoints: 0, 

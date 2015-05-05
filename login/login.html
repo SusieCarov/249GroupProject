@@ -10,14 +10,60 @@
     
 </body>
 
+
+
 <template name="points">
     <h2>Leaderboard</h2>
-    <ul>
-        <li> Study Points: </li>
-        <li> Health Points: </li>
-        <li> Social Points: </li>
-        <li> Sleep Points: </li>
-        <li> Play Points: </li>
-    </ul>
-  
+    <ol>
+        <li class="rankCategory"> Play Point Ranking
+            <ul>
+                <li> Testing </li>
+                {{#each point}}
+                    <li>{{user}}: {{playPoints}} </li>
+                {{/each}}
+            </ul>
+        </li>
+        
+        <li  class="rankCategory"> Social Point Ranking
+            <ul>
+                <li> Testing </li>
+                {{#each study}}
+                    <li>{{user}}: {{socialPoints}} </li>
+                {{/each}}
+            </ul>
+        </li>
+        <li  class="rankCategory"> Study Point Ranking 
+            <ul>
+                <li> Testing </li>
+                {{#each study}}
+                    <li>{{user}}: {{studyPoints}} </li>
+                {{/each}}
+            </ul>
+        </li>
+        <li  class="rankCategory"> Sleep Point Ranking 
+            <ul>
+                <li> Testing </li>
+                {{#each study}}
+                    <li>{{user}}: {{sleepPoints}} </li>
+                {{/each}}
+            </ul>
+        </li>
+        <li  class="rankCategory"> Health Point Ranking
+            <ul>
+                <li> Testing </li>
+                {{#each study}}
+                    <li>{{user}}: {{healthPoints}} </li>
+                {{/each}}
+            </ul>
+        </li>
+        <li  class="rankCategory"> Total Points Ranking
+            <ul>
+                <li> Testing </li>
+                {{#each study}}
+                    <li>{{user}}: {{studyPoints + healthPoints + sleepPoints + playPoints + socialPoints}} </li>
+                {{/each}}
+            </ul>
+        </li>
+   
+    </ol>
 </template>
