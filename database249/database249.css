@@ -1,3 +1,7 @@
 .pointBox {
 	align: right;
 }
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}

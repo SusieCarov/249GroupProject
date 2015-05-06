@@ -119,7 +119,6 @@ if(Meteor.isServer){
     TasksList.remove({});
   }
   for (i in tasksArray) {
-    console.log("inside for loop");
     TasksList.insert({
       text: tasksArray[i].text,
       points: 15,
@@ -142,7 +141,6 @@ if(Meteor.isServer){
     //method
     'insertTaskData': function(){
       for (i in tasksArray) {
-        console.log("inside for loop");
         TasksList.insert({
           text: tasksArray[i].text,
           points: 15,
@@ -169,7 +167,7 @@ if(Meteor.isServer){
     'removeAllGenTasks': function() {
       return GenTasksList.remove({});
     }
-    
+
   });
 
 }
