@@ -23,24 +23,12 @@
 	<h1>5</h1>
 </template>
 
-<template name="svgs">
-	<svg height="100" width="100">
-	  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="red"/>
-	</svg>
-</template>
 
 <template name="todayTasks">
   <div class="tasks">
     <h2>Bonus Tasks</h2>
     
     <ul>
-      
-      <ul>
-      {{#each btask}}
-        {{> bonus}}
-      {{/each}}
-      </ul>
-      
       <li id="social"> 
         {{#with socialTask}}
         {{> bonus}}

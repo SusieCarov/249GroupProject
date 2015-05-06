@@ -71,7 +71,7 @@ if(Meteor.isClient) {
         TasksList.update(this._id, {$set: {checked: ! this.checked}});
       },
       "click .delete": function () {
-        TasksList.remove(this._id);
+        TasksList.update(this._id, {$set: {skipped: true}});
       }
     });
     
