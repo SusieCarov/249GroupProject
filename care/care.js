@@ -67,11 +67,13 @@ if(Meteor.isClient) {
   
      Template.bonus.events({
       "click .toggle-checked": function () {
+        
         // Set the checked property to the opposite of its current value
         TasksList.update(this._id, {$set: {checked: ! this.checked}});
       },
       "click .delete": function () {
-        TasksList.update(this._id, {$set: {skipped: true}});
+        TasksList.remove(this._id);
+       // TasksList.update(this._id, {$set: {skipped: true}});
       }
     });
     
