@@ -59,6 +59,13 @@ var genArray = [
   {text: "Went outside!", category: "Play", points: 5}];
 
 if(Meteor.isClient) {
+    Template.pointBox.helpers({
+      
+      'userPoints': function() {
+        return 5
+      },
+
+    });
 
     //helper functions
     Template.allTasks.helpers({
@@ -135,6 +142,7 @@ if(Meteor.isServer){
       points: genArray[i].points,
       category: genArray[i].category
     });
+
   }
 
   Meteor.methods({
