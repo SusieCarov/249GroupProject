@@ -4,11 +4,25 @@
   <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
 
-<body>  
+<body>
+
+<div class="container">
+	<div class="jumbotron">
+		<h1>POINTS</h1>
+		{{> pointBox}}
+	    <h3>Tasks</h3>
+	    <br><br>
+	    {{> svgs}}
+	    <br><br>
+	    {{> allTasks}}
+  </div>
+  </div>
+  
   <h1>Wellesley Cares</h1>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-7">
       <img class="flower" src="flower.png" alt="flower">
+
     </div>
     <div class="col-xs-6 col-md-5 taskmenu"> 
       <img class="clipboard" src="clipboard_transparent.png" alt="clipboard"> 
@@ -20,7 +34,7 @@
 </body>
 
 <template name="pointBox">
-	<h1>5</h1>
+	<h1>{{userPoints}}</h1>
 </template>
 
 

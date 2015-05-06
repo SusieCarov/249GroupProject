@@ -1,7 +1,10 @@
-.points {
+.pointBox {
 	align: right;
 }
 
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
 .flower {
 	position: relative;
 	width: 300px;
