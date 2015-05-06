@@ -33,33 +33,40 @@
   <div class="tasks">
     <h2>Bonus Tasks</h2>
     
-    <ol>
+    <ul>
+      
+      <ul>
+      {{#each btask}}
+        {{> bonus}}
+      {{/each}}
+      </ul>
+      
       <li id="social"> 
         {{#with socialTask}}
-          {{text}}
+        {{> bonus}}
         {{/with}}
       </li>
       <li id="study"> 
         {{#with studyTask}}
-          {{text}}
+          {{> bonus}}
         {{/with}}
       </li>
       <li id="sleep"> 
         {{#with sleepTask}}
-          {{text}}
+          {{> bonus}}
         {{/with}}
       </li>
       <li id="health"> 
         {{#with healthTask}}
-          {{text}}
+         {{> bonus}}
         {{/with}}
       </li>
       <li id="play"> 
         {{#with playTask}}
-          {{text}}
+          {{> bonus}}
         {{/with}}
       </li>
-    </ol>
+    </ul>
   </div>
   
 </template>
@@ -82,4 +89,15 @@
 	    {{/each}}
 	</ul>
 
+</template>
+
+
+<template name="bonus">
+  <li class="{{#if checked}}checked{{/if}}">
+    <button class="delete">&times;</button>
+
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+
+    <span class="text">{{text}}</span>
+  </li>
 </template>

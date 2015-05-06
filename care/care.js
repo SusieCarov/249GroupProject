@@ -1,5 +1,5 @@
+  TasksList = new Mongo.Collection("tasks");
 
-TasksList = new Mongo.Collection("tasks");
 
 var tasksArray = [
   {text: "Tried a dining hall I don’t normally go to", category: "Eat" }, {text: "Walk around lake", category: "Health" },
@@ -45,6 +45,8 @@ var tasksArray = [
 
 if(Meteor.isClient) {
 
+  Meteor.subscribe("TasksList");
+  
     Template.todayTasks.helpers({
       'studyTask': function() {
         return TasksList.findOne({category: "Study"});
@@ -62,6 +64,18 @@ if(Meteor.isClient) {
         return TasksList.findOne({category: "Health"});
       }
     });
+  
+     Template.bonus.events({
+      "click .toggle-checked": function () {
+        // Set the checked property to the opposite of its current value
+        TasksList.update(this._id, {$set: {checked: ! this.checked}});
+      },
+      "click .delete": function () {
+        TasksList.remove(this._id);
+      }
+    });
+    
+  
   
     //helper functions
     Template.allTasks.helpers({
@@ -96,15 +110,17 @@ if(Meteor.isClient) {
         return TasksList.find({category: "Sleep"}).count()
       },
 
-
     });
 }
 
 if(Meteor.isServer){
-
-  if (TasksList.find().count() == 0) {
-    Meteor.call('insertTaskData');
-  }
+    
+  Meteor.publish("TasksList", function() {
+    if (TasksList.find().count() == 0) {
+      Meteor.call('insertTaskData');
+    }
+    return TasksList.find({});
+  });
   
   Meteor.methods({
 
