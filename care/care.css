@@ -8,12 +8,11 @@ body {
 h1 {
   font-family: Pacifico;
   text-align: center;
-  font-size: 8rem;
+  font-size: 6rem;
 }
 
 img {
   height: 75vh;
-  margin: -10px;
 }
 
 .tasks {
@@ -37,4 +36,9 @@ h2 {
 
 .flower {
   height: 90vh;
+}
+
+.points {
+	align: right;
+  width: 200px;
 }
