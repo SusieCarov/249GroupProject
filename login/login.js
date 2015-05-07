@@ -10,12 +10,12 @@ if (Meteor.isClient) {
     console.log("Hi Client");
     
     
-    Template.points.events({
+    /*Template.points.events({
             "click li":function(event, template){
                 template.$("ul").slideToggle(300);
 
   }
-    });
+    }); */
     
     Handlebars.registerHelper("isNull", function(value) {
         return value === null;
@@ -43,6 +43,16 @@ if (Meteor.isClient) {
         
         pointsImplemented: function(){
             console.log("You have already initialized the points");
+        },
+        
+        userhaspoints: function(){
+            var you = Meteor.user().profile;
+            console.log(you);
+            if (you.hasOwnProperty("playPoints")){
+                return true;
+                } else{
+                return false;
+                }
         }
         
 });
@@ -65,6 +75,8 @@ if (Meteor.isClient) {
         photoURL: function(){
             return this.services.google.picture;
         }
+        
+        
                                       
     });
     
@@ -123,8 +135,10 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
     console.log("Hi Server");
     //Meteor.users.remove({});
-    console.log("users deleted")
-   /* Meteor.startUp(function() {
+    
+   /*
+   console.log("users deleted")
+   Meteor.startUp(function() {
         
     }
     Meteor.publish('thePoints', function(){

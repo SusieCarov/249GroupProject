@@ -12,7 +12,7 @@
          {{>points}}
     
     
-        {{#if user.profile.healthPoints}}
+        {{#if userhaspoints}}
             {{pointsImplemented}}
             You visited again!
         {{else}}
@@ -28,46 +28,51 @@
 </body>
 
 <template name="points">
-    <h2>Leaderboard</h2>
-    <ul>
-        <li class="rankCategory"> Play Point Ranking
-            <ol>
-                {{#each users}}
-                    <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.playPoints}}</li>
-                {{/each}}
-            </ol>
-        </li>
+    <div class='leaderboard'>
+        <h1>Leaderboard</h1>
+        <ul class="inline-list">
+            <li class="header" id="play"> Play Point Ranking
+                <ol>
+                    {{#each users}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.playPoints}}</li>
+                    {{/each}}
+                </ol>
+            </li>
         
-        <li  class="rankCategory"> Social Point Ranking
-            <ol>
-                {{#each pointInfo}}
-                   <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.socialPoints}} </li>
-                {{/each}}
-            </ol>
-        </li>
-        <li  class="rankCategory"> Study Point Ranking 
-            <ol>
-                {{#each pointInfo}}
-                    <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.studyPoints}} </li>
-                {{/each}}
-            </ol>
-        </li>
-        <li  class="rankCategory"> Sleep Point Ranking 
-            <ol>
-                {{#each pointInfo}}
-                    <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.sleepPoints}} </li>
-                {{/each}}
-            </ol>
-        </li>
-        <li  class="rankCategory"> Health Point Ranking
-            <ol>
-                {{#each pointInfo}}
-                    <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.healthPoints}} </li>
-                {{/each}}
-            </ol>
-        </li>
+            <li class="header" id="social"> Social Point Ranking
+                <ol>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.socialPoints}} </li>
+                    {{/each}}
+                </ol>
+            </li>
+            <li class="header" id="study"> Study Point Ranking 
+                <ol>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.studyPoints}} </li>
+                    {{/each}}
+                </ol>
+            </li>
+            <li class="header" id="sleep"> Sleep Point Ranking 
+                <ol>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.sleepPoints}} </li>
+                    {{/each}}
+                </ol>
+            </li>
+            <li class="header" id="health"> Health Point Ranking
+                <ol>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.healthPoints}} </li>
+                    {{/each}}
+                </ol>
+            </li>
    
     </ul>
+
+    
+    
+</div>    
 </template>
 
 
