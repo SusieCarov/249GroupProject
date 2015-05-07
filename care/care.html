@@ -1,5 +1,7 @@
 <head>
-    <title>Tasks Database</title>
+ 
+  <title>Wellesley Cares</title>
+  <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -13,19 +15,62 @@
 	    {{> svgs}}
 	    <br><br>
 	    {{> allTasks}}
-    </div>
-</div>
+  </div>
+  </div>
+  
+  <h1>Wellesley Cares</h1>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-7">
+      <img class="flower" src="flower.png" alt="flower">
 
+    </div>
+    <div class="col-xs-6 col-md-5 taskmenu"> 
+      <img class="clipboard" src="clipboard_transparent.png" alt="clipboard"> 
+      {{>todayTasks}}
+    </div>
+  </div>
+  
+  
 </body>
 
 <template name="pointBox">
 	<h1>{{userPoints}}</h1>
 </template>
 
-<template name="svgs">
-	<svg height="100" width="100">
-	  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="1" fill="red"/>
-	</svg>
+
+<template name="todayTasks">
+  <div class="tasks">
+    <h2>Bonus Tasks</h2>
+    
+    <ul>
+      <li id="social"> 
+        {{#with socialTask}}
+        {{> bonus}}
+        {{/with}}
+      </li>
+      <li id="study"> 
+        {{#with studyTask}}
+          {{> bonus}}
+        {{/with}}
+      </li>
+      <li id="sleep"> 
+        {{#with sleepTask}}
+          {{> bonus}}
+        {{/with}}
+      </li>
+      <li id="health"> 
+        {{#with healthTask}}
+         {{> bonus}}
+        {{/with}}
+      </li>
+      <li id="play"> 
+        {{#with playTask}}
+          {{> bonus}}
+        {{/with}}
+      </li>
+    </ul>
+  </div>
+  
 </template>
 
 <template name="allTasks">
@@ -46,4 +91,15 @@
 	    {{/each}}
 	</ul>
 
+</template>
+
+
+<template name="bonus">
+  <li class="{{#if checked}}checked{{/if}}">
+    <button class="delete">&times;</button>
+
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+
+    <span class="text">{{text}}</span>
+  </li>
 </template>
