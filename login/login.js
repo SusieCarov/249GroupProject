@@ -37,7 +37,9 @@ if (Meteor.isClient) {
         },
         
         initializePoints: function(){
+            console.log("first time user, updating fields")
             Meteor.users.update({_id:Meteor.user()._id}, {$set:{profile: {playPoints: 0, studyPoints: 0, socialPoints: 0, sleepPoints:0,            healthPoints:0}}});
+            console.log("updating users");
         }
         
 });

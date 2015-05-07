@@ -11,8 +11,8 @@
             Hello, {{firstName}}!</p>
          {{>points}}
     
-        {{#if checkFirstTimeUser}}
-            console.log("first time user, updating fields");
+    
+        {{#if isNull user.profile.healthPoints}}
             {{initializePoints}}
         {{/if}}
     
