@@ -2,32 +2,15 @@
 	align: right;
 }
 
-#ex1Slider .slider-selection {
-	background: #BABABA;
-}
-.flower {
-	position: relative;
-	width: 300px;
-	height: 300px;
+.points {
+	width: 10%;
+	height: 20%;
+	float: right;
 	text-align: center;
-	border-style: solid;
-	border-width: 2px;
 }
 
-.center {
+.range-slider {
+	width: 80%;
 }
 
-.petal1 {
-}
 
-.petal2 {
-}
-
-.petal3 {
-}
-
-.petal4 {
-}
-
-.petal5 {
-}

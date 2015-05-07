@@ -1,4 +1,3 @@
-
 TasksList = new Mongo.Collection("tasks");
 GenTasksList = new Mongo.Collection("genTasks");
 
@@ -8,7 +7,7 @@ var tasksArray = [
   {text: "See movie at Collins Cinema!", category: "Health" }, {text: "Nachos @ Hoop", category: "Eat" },
   {text: "Sandwich @ El Table", category: "Eat" }, {text: "Go to professor’s office hours", category: "Study" },
   {text: "Find 5th floor bathroom in Science Center", category: "Study" }, {text: "Go to open observatory hours", category: "Play" },
-  {text: "Go to cultural event", category: "Play",}, {text: "Go to Galen Stone Tower", category: "" },
+  {text: "Go to cultural event", category: "Play",}, {text: "Go to Galen Stone Tower", category: "Play" },
   {text: "Study in Schneider", category: "Study" }, {text: "Study in a new part of Clapp", category: "Study" }, 
   {text: "Study in the Lulu", category: "Study"},
   {text: "Play billiards on Lulu 3rd floor", category: "Play"},  {text: "Check out a projector and have a movie night!", category: "Social" },
@@ -67,18 +66,33 @@ if(Meteor.isClient) {
 
     });
 
+    Template.random.helpers({
+
+      'randomTasks': function() {
+        var results = [];
+        while (results.length < 4) {
+          var j = Math.floor(Math.random() * TasksList.find().count());
+          // if (TasksList.find({text: tasksArray[j].text}).fetch()[0].checked == false) {
+            results.push(TasksList.find({text: tasksArray[j].text}).fetch()[0].text);
+          // }
+        }
+        return results;
+      },
+
+    });
+
     //helper functions
     Template.allTasks.helpers({
 
-      'userPoints': function() {
+      userPoints: function() {
         return 5;
       },
 
-      'task': function() {
+      task: function() {
         return TasksList.find();
       },
 
-      'counterStudy': function() {
+      counterStudy: function() {
         return TasksList.find({category: "Study"}).count()
       },
 
@@ -106,18 +120,9 @@ if(Meteor.isClient) {
         return GenTasksList.find();
       },
 
-      'randomTasks': function() {
-        var i = Math.floor(Math.random() * TasksList.find().count());
-        var j = Math.floor(Math.random() * TasksList.find().count());
-        var k = Math.floor(Math.random() * TasksList.find().count());
-        var first = TasksList.find({text: tasksArray[i].text}).fetch()[0].text;
-        var second = TasksList.find({text: tasksArray[j].text}).fetch()[0].text;
-        var third = TasksList.find({text: tasksArray[k].text}).fetch()[0].text;
-        return [first, " " + second, " " + third];
-      }
-
 
     });
+
 }
 
 if(Meteor.isServer){
@@ -152,7 +157,8 @@ if(Meteor.isServer){
         TasksList.insert({
           text: tasksArray[i].text,
           points: 15,
-          category: tasksArray[i].category
+          category: tasksArray[i].category,
+          checked: false
         });
       }
     },
@@ -162,7 +168,8 @@ if(Meteor.isServer){
         GenTasksList.insert({
           content: genArray[i].text,
           points: genArray[i].points,
-          category: genArray[i].category
+          category: genArray[i].category,
+          checked: false
         });
       }
     },

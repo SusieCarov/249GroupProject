@@ -3,9 +3,16 @@ var renderer = new THREE.WebGLRenderer();
 
 TW.mainInit(renderer,scene);
 
-var points = [ [2, 0, -4],[3, 0, -3],[4, 0, -2],
-               [5, 0, -1],[5.3, 0, 0],[5, 0, 2],
-               [3, 0, 4],[1, 0, 6],[0, 0, 8]];
+var points = 
+[[1, 0, 0],
+[2, 0, 1],
+[3, 0, 2],
+[4, 0, 3],
+[4.3, 0, 4],
+[4, 0, 6],
+[2, 0, 8],
+[1, 0, 10],
+[0, 0, 12]];
 
 function printPoints() {
     var i;
@@ -39,34 +46,22 @@ function makePetal() {
     return latheObj;
 }
 
-
 var flowerFrame = new THREE.Object3D();
-
-
-var midMat = new THREE.MeshBasicMaterial({color: 0xFFFF00});
-var midGeom = new THREE.SphereGeometry(3, 50, 50);
-var middle = new THREE.Mesh(midGeom, midMat);
-middle.position.set(0,0,-5.5);
-flowerFrame.add(middle);
-
-var petal1 = makePetal();
-flowerFrame.add(petal1);
-
-var petal2 = makePetal();
-flowerFrame.add(petal2);
-petal2.rotation.x = Math.PI/2;
-
-var petal3 = makePetal();
-flowerFrame.add(petal3);
-
-var petal4 = makePetal();
-flowerFrame.add(petal4);
-
-var petal5 = makePetal();
-flowerFrame.add(petal5);
-
 scene.add(flowerFrame);
 
+var axis = new THREE.Object3D();
+var midMat = new THREE.MeshBasicMaterial({color: 0xFFFF00});
+var midGeom = new THREE.SphereGeometry(3, 50, 50);
+var midRadius = 3/2;
+var middle = new THREE.Mesh(midGeom, midMat);
+axis.add(middle);
+flowerFrame.add(axis);
+
+for (i = 0; i<5; i++) {
+    var petal = makePetal();
+    petal.rotation.x = i*(Math.PI*2)/5;
+    axis.add(petal);
+}
 
 var cameraFOVY = 75;
 

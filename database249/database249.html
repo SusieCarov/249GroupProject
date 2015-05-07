@@ -6,29 +6,36 @@
 
 <div class="container">
 	<div class="jumbotron">
+		{{> pointBox}}
+		<br><br>
 		{{> dialogBox}}
 		<br><br>
-	    <br><br>
 	    {{> allTasks}}
+	    <br><br>
+	    {{> random}}
     </div>
 </div>
 
 </body>
 
+<template name="random">
+	{{randomTasks}}
+</template>
+
 <template name="pointBox">
-	{{userPoints}}
+	<div class="points">
+		<div class="panel callout radius">
+		  <h5>{{userPoints}}</h5>
+		</div>
+	</div>
 </template>
 
 <template name="dialogBox">
-  <form class="form-group">
-    <p><label>Amount of sleep: 
-          <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="24" data-slider-step="1" data-slider-value="14"/>
-  	</label></p>
-<!--     <p><label>Nap? 
-      <input type="text" class="form-control" name="meetingLocation" required value="some location"> </label>
-    </p>
- -->  </form> 
-
+	<div class="range-slider" data-slider data-options="start: 0; end: 24;">
+	  <span class="range-slider-handle" role="slider" tabindex="0"></span>
+	  <span class="range-slider-active-segment"></span>
+	  <input type="hidden">
+	</div>
 </template>
 
 <template name="allTasks">
@@ -45,21 +52,5 @@
 	<br>
 	Number of Generic Tasks: {{counterGenTasks}}
 	<br>
-<!-- 	Random tasks: {{randomTasks}}
- -->
-<!-- 	<ul class="list-group">
-	    {{#each task}}
-			<li class="task list-group-item">{{text}}: {{category}} <span class="badge">{{points}}</span></li>
-	    {{/each}}
-	</ul>
-
-	<br><br>
-	<h1>Generic Tasks</h1>
-
-	<ul class="list-group">
-	    {{#each genTask}}
-			<li class="task list-group-item">{{content}}: {{category}} <span class="badge">{{points}}</span></li>
-	    {{/each}}
-	</ul> -->
 
 </template>
