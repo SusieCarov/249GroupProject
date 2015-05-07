@@ -100,17 +100,17 @@ if(Meteor.isClient) {
       },
 
       'randomTasks': function() {
-        var i = Math.floor(Math.random() * TasksList.find().count());
-        var j = Math.floor(Math.random() * TasksList.find().count());
-        var k = Math.floor(Math.random() * TasksList.find().count());
-        var first = TasksList.find({text: tasksArray[i].text}).fetch()[0].text;
-        var second = TasksList.find({text: tasksArray[j].text}).fetch()[0].text;
-        var third = TasksList.find({text: tasksArray[k].text}).fetch()[0].text;
-        return [first, " " + second, " " + third];
+        var results = [];
+        for (i = 0; i<3; i++) {
+          var j = Math.floor(Math.random() * TasksList.find().count());
+          results.push(TasksList.find({text: tasksArray[i].text}).fetch()[0].text);
+        }
+        return results;
       }
 
 
     });
+
 }
 
 if(Meteor.isServer){

@@ -2,6 +2,6 @@
 	align: right;
 }
 
-#ex1Slider .slider-selection {
-	background: #BABABA;
+.range-slider {
+	width: 80%;
 }

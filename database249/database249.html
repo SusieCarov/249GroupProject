@@ -20,14 +20,11 @@
 </template>
 
 <template name="dialogBox">
-  <form class="form-group">
-    <p><label>Amount of sleep: 
-          <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="24" data-slider-step="1" data-slider-value="14"/>
-  	</label></p>
-<!--     <p><label>Nap? 
-      <input type="text" class="form-control" name="meetingLocation" required value="some location"> </label>
-    </p>
- -->  </form> 
+	<div class="range-slider" data-slider data-options="start: 0; end: 24;">
+	  <span class="range-slider-handle" role="slider" tabindex="0"></span>
+	  <span class="range-slider-active-segment"></span>
+	  <input type="hidden">
+	</div>
 </template>
 
 <template name="allTasks">
