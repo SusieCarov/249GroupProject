@@ -6,17 +6,28 @@
 
 <div class="container">
 	<div class="jumbotron">
+		{{> pointBox}}
+		<br><br>
 		{{> dialogBox}}
 		<br><br>
-	    <br><br>
 	    {{> allTasks}}
+	    <br><br>
+	    {{> random}}
     </div>
 </div>
 
 </body>
 
+<template name="random">
+	{{randomTasks}}
+</template>
+
 <template name="pointBox">
-	{{userPoints}}
+	<div class="points">
+		<div class="panel callout radius">
+		  <h5>{{userPoints}}</h5>
+		</div>
+	</div>
 </template>
 
 <template name="dialogBox">
@@ -41,21 +52,5 @@
 	<br>
 	Number of Generic Tasks: {{counterGenTasks}}
 	<br>
-<!-- 	Random tasks: {{randomTasks}}
- -->
-<!-- 	<ul class="list-group">
-	    {{#each task}}
-			<li class="task list-group-item">{{text}}: {{category}} <span class="badge">{{points}}</span></li>
-	    {{/each}}
-	</ul>
-
-	<br><br>
-	<h1>Generic Tasks</h1>
-
-	<ul class="list-group">
-	    {{#each genTask}}
-			<li class="task list-group-item">{{content}}: {{category}} <span class="badge">{{points}}</span></li>
-	    {{/each}}
-	</ul> -->
 
 </template>

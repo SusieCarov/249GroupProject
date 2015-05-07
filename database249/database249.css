@@ -2,6 +2,15 @@
 	align: right;
 }
 
+.points {
+	width: 10%;
+	height: 20%;
+	float: right;
+	text-align: center;
+}
+
 .range-slider {
 	width: 80%;
 }
+
+
