@@ -39,7 +39,10 @@ if (Meteor.isClient) {
         initializePoints: function(){
             console.log("first time user, updating fields")
             Meteor.users.update({_id:Meteor.user()._id}, {$set:{profile: {playPoints: 0, studyPoints: 0, socialPoints: 0, sleepPoints:0,            healthPoints:0}}});
-            console.log("updating users");
+        },
+        
+        pointsImplemented: function(){
+            console.log("You have already initialized the points");
         }
         
 });
@@ -47,7 +50,7 @@ if (Meteor.isClient) {
     Template.points.helpers({
         pointInfo: function() {
             console.log("Point Displayed");
-            return Meteor.users.find();
+            return Meteor.users.find({}, {sort:{profile: {playPoints: -1, studyPoints: -1, socialPoints: -1, sleepPoints: -1, healthPoints: -1, name: 1}}});
         },
         users: function(){
             return Meteor.users.find({}, {"services.google.name": 1, 
@@ -119,7 +122,8 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
     console.log("Hi Server");
-    
+    //Meteor.users.remove({});
+    console.log("users deleted")
    /* Meteor.startUp(function() {
         
     }
