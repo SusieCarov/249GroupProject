@@ -109,7 +109,7 @@ if (Meteor.isClient) {
     });
     
     Template.login.events({
-    'submit #loginB': function(event, template){
+    'submit #loginB': function(event, template){         
         event.preventDefault();
         var emailVar = template.find('#login-email').value;
         var passwordVar = template.find('#login-password').value;
@@ -134,7 +134,7 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
     console.log("Hi Server");
-    //Meteor.users.remove({});
+    // Meteor.users.remove({});
     
    /*
    console.log("users deleted")

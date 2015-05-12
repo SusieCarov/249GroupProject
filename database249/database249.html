@@ -3,15 +3,37 @@
 </head>
 
 <body>
+    
+    {{#if currentUser}}
+         {{>loginButtons}}
+    <p><img src="{{profileURL}}" width=30> 
+            Hello, {{firstName}}!</p>
+         {{>points}}
+         <div class="container">
+	       <div class="jumbotron">
+		      {{> dialogBox}}
+		          <br><br>
+	               <br><br>
+	         {{> allTasks}}
+             </div>
+        </div>
 
-<div class="container">
-	<div class="jumbotron">
-		{{> dialogBox}}
-		<br><br>
-	    <br><br>
-	    {{> allTasks}}
+    
+        {{#if userhaspoints}}
+            {{pointsImplemented}}
+            
+        {{else}}
+            {{initializePoints}}
+            
+        {{/if}}
+    
+    
+    {{else}}
+      <div id="loginB">
+        {{>loginButtons align="right"}}
     </div>
-</div>
+    {{/if}}
+
 
 </body>
 
@@ -62,4 +84,53 @@
 	    {{/each}}
 	</ul> -->
 
+</template>
+
+<template name="points">
+    <div class='leaderboard'>
+        <h1>Leaderboard</h1>
+        <ul class="inline-list">
+            <li class="header" id="play"> Play Point Ranking
+                <ul>
+                    {{#each pointInfo}}
+                        <li>
+                            <img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.playPoints}}</li>
+                    {{/each}}
+                </ul>
+            </li>
+        
+            <li class="header" id="social"> Social Point Ranking
+                <ul>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.socialPoints}} </li>
+                    {{/each}}
+                </ul>
+            </li>
+            <li class="header" id="study"> Study Point Ranking 
+                <ul>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.studyPoints}} </li>
+                    {{/each}}
+                </ul>
+            </li>
+            <li class="header" id="sleep"> Sleep Point Ranking 
+                <ul>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.sleepPoints}} </li>
+                    {{/each}}
+                </ul>
+            </li>
+            <li class="header" id="health"> Health Point Ranking
+                <ul>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.healthPoints}} </li>
+                    {{/each}}
+                </ul>
+            </li>
+   
+    </ul>
+
+    
+    
+</div>    
 </template>
