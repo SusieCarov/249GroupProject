@@ -1,5 +1,4 @@
-  TasksList = new Mongo.Collection("tasks");
-
+TasksList = new Mongo.Collection("tasks");
 
 var tasksArray = [
   {text: "Tried a dining hall I don’t normally go to", category: "Eat" }, {text: "Walk around lake", category: "Health" },
@@ -42,85 +41,20 @@ var tasksArray = [
   {text: "Host a Prospie", category: "Social"},  {text: "Buy something on Free and For Sale", category: "Play"}, 
   {text: "Sell something on Free and For Sale", category: "Play"},  {text: "Therapy Dogs!", category: "Health"}, 
   {text: "Study in Sage Lounge Science Center", category: "Study"}];
-
-if(Meteor.isClient) {
-
-  Meteor.subscribe("TasksList");
-  
-    Template.todayTasks.helpers({
-      'studyTask': function() {
-        return TasksList.findOne({category: "Study"});
-      },
-      'sleepTask': function() {
-        return TasksList.findOne({category: "Sleep"});
-      },
-      'socialTask': function() {
-        return TasksList.findOne({category: "Social"});
-      },
-      'playTask': function() {
-        return TasksList.findOne({category: "Play"});
-      },
-      'healthTask': function() {
-        return TasksList.findOne({category: "Health"});
-      }
-    });
-  
-     Template.bonus.events({
-      "click .toggle-checked": function () {
-        
-        // Set the checked property to the opposite of its current value
-        TasksList.update(this._id, {$set: {checked: ! this.checked}});
-      },
-      "click .delete": function () {
-        TasksList.remove(this._id);
-       // TasksList.update(this._id, {$set: {skipped: true}});
-      }
-    });
-    
-  
-  
-    //helper functions
-    Template.allTasks.helpers({
-
-      'userPoints': function() {
-        //points as property in user collection object
-        //return this.points;
-        return 5;
-      },
-
-      'task': function() {
-        return TasksList.find();
-      },
-
-      'counterStudy': function() {
-        return TasksList.find({category: "Study"}).count()
-      },
-
-      'counterHealth': function() {
-        return TasksList.find({category: "Health"}).count()
-      },
-
-      'counterPlay': function() {
-        return TasksList.find({category: "Play"}).count()
-      },
-
-      'counterSocial': function() {
-        return TasksList.find({category: "Social"}).count()
-      },
-
-      'counterSleep': function() {
-        return TasksList.find({category: "Sleep"}).count()
-      },
-
-    });
-}
-
-if(Meteor.isServer){
+//      Meteor.call('insertTaskData');
+ for (i in tasksArray) {
+          console.log("inside for loop");
+            TasksList.insert({
+              text: tasksArray[i].text,
+              points: 15,
+              category: tasksArray[i].category
+            });
+        }
 
   Meteor.publish("TasksList", function() {
-    if (TasksList.find().count() == 0) {
+    
       Meteor.call('insertTaskData');
-    }
+    
     return TasksList.find({});
   });
   
@@ -128,13 +62,15 @@ if(Meteor.isServer){
 
     //method
     'insertTaskData': function(){
-      for (i in tasksArray) {
-        console.log("inside for loop");
-          TasksList.insert({
-            text: tasksArray[i].text,
-            points: 15,
-            category: tasksArray[i].category
-          });
+      if (TasksList.find().count() == 0) {
+        for (i in tasksArray) {
+          console.log("inside for loop");
+            TasksList.insert({
+              text: tasksArray[i].text,
+              points: 15,
+              category: tasksArray[i].category
+            });
+        }
       }
     },
 
@@ -145,7 +81,5 @@ if(Meteor.isServer){
 
     //another method
   });
-
-}
 
 
