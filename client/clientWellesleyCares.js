@@ -1,3 +1,4 @@
+TasksList = new Mongo.Collection("tasks");
 
   Meteor.subscribe("TasksList");
   
