@@ -78,45 +78,11 @@ if(Meteor.isClient) {
     });
     
   
-  
-    //helper functions
-    Template.allTasks.helpers({
-
-      'userPoints': function() {
-        //points as property in user collection object
-        //return this.points;
-        return 5;
-      },
-
-      'task': function() {
-        return TasksList.find();
-      },
-
-      'counterStudy': function() {
-        return TasksList.find({category: "Study"}).count()
-      },
-
-      'counterHealth': function() {
-        return TasksList.find({category: "Health"}).count()
-      },
-
-      'counterPlay': function() {
-        return TasksList.find({category: "Play"}).count()
-      },
-
-      'counterSocial': function() {
-        return TasksList.find({category: "Social"}).count()
-      },
-
-      'counterSleep': function() {
-        return TasksList.find({category: "Sleep"}).count()
-      },
-
-    });
 }
 
-if(Meteor.isServer){
 
+if(Meteor.isServer){
+    
   Meteor.publish("TasksList", function() {
     if (TasksList.find().count() == 0) {
       Meteor.call('insertTaskData');

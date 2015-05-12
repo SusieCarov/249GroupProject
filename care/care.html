@@ -2,21 +2,28 @@
  
   <title>Wellesley Cares</title>
   <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  
 </head>
 
-<body>  
 
+<body>  
+  
   <div class="row">
-    <div class="large-12 columns">
-    <h1>Wellesley Cares</h1>
-    {{pointBox}}
-      </div>
+    <div class="large-2 medium-2 columns login large-uncentered">
+      <a class="button secondary ">
+     {{> loginButtons}} 
+        </a>
+    </div>
+    <div class="large-10 medium-10 columns large-uncentered">
+       
+      <h1>Wellesley Cares</h1>
+      {{pointBox}}
+        </div>
   </div>
 
   <div class="row">
     <div class=" small-6 medium-7 large-8 columns">
       <img class="flower" src="flower.png" alt="flower">
-
     </div>
     <div class="small-6 medium-5 large-4 columns taskmenu"> 
       <img class="clipboard" src="clipboard_transparent.png" alt="clipboard"> 
@@ -28,7 +35,7 @@
 </body>
 
 <template name="pointBox">
-	<h1>{{userPoints}}</h1>
+	<h1>5</h1>
 </template>
 
 
@@ -36,7 +43,7 @@
   <div class="tasks">
     <h2>Bonus Tasks</h2>
     
-    <ul>
+    <ul class="no-bullet">
       <li id="social"> 
         {{#with socialTask}}
         {{> bonus}}

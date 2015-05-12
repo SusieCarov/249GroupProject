@@ -9,3 +9,5 @@ autopublish
 insecure
 accounts-google
 ewall:foundation
+accounts-password
+accounts-ui
