@@ -1,0 +1,101 @@
+<head>
+  <title>Leaderboard</title>
+</head>
+
+<body>
+  <h1>Wellesley Cares</h1>
+
+   {{#if currentUser}}
+         {{>loginButtons}}
+    <p><img src="{{profileURL}}" width=30> 
+            Hello, {{firstName}}!</p>
+         {{>points}}
+    
+    
+        {{#if userhaspoints}}
+            {{pointsImplemented}}
+            You visited again!
+        {{else}}
+            {{initializePoints}}
+            Welcome!
+        {{/if}}
+    
+    
+    {{else}}
+        {{>loginButtons}}
+    {{/if}}
+    
+</body>
+
+<template name="points">
+    <div class='leaderboard'>
+        <h1>Leaderboard</h1>
+        <ul class="inline-list">
+            <li class="header" id="play"> Play Point Ranking
+                <ol>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.playPoints}}</li>
+                    {{/each}}
+                </ol>
+            </li>
+        
+            <li class="header" id="social"> Social Point Ranking
+                <ol>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.socialPoints}} </li>
+                    {{/each}}
+                </ol>
+            </li>
+            <li class="header" id="study"> Study Point Ranking 
+                <ol>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.studyPoints}} </li>
+                    {{/each}}
+                </ol>
+            </li>
+            <li class="header" id="sleep"> Sleep Point Ranking 
+                <ol>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.sleepPoints}} </li>
+                    {{/each}}
+                </ol>
+            </li>
+            <li class="header" id="health"> Health Point Ranking
+                <ol>
+                    {{#each pointInfo}}
+                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.healthPoints}} </li>
+                    {{/each}}
+                </ol>
+            </li>
+   
+    </ul>
+
+    
+    
+</div>    
+</template>
+
+
+<template name="register">
+<form>
+    <input type="email" id="register-email" placeholder="Email" >
+    <input type="password" id="register-password" placeholder="Password" >
+    <input type="text" id="signup-username" placeholder="Username" />
+    <input type="text" id="signup-name" placeholder="Full Name" />
+    <input type="submit" value="Register" id="registerform">
+</form>
+</template>
+
+<template name="login">
+<form>
+    <input type="email" id="login-email" placeholder="Email">
+    <input type="password" id="login-password" placeholder="Password">
+    <input type="submit" value="Login" id="loginB">
+</form>
+</template>
+
+<template name="dashboard">
+    <p>You're logged in.</p>
+    <p><a href="#" class="logout">Logout</a></p>
+</template>
+
