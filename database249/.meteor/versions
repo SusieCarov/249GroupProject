@@ -15,6 +15,7 @@ check@1.0.5
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
+ewall:foundation@5.5.2
 fastclick@1.0.3
 geojson-utils@1.0.3
 google@1.1.5
@@ -34,6 +35,8 @@ meteor@1.1.6
 meteor-platform@1.2.2
 minifiers@1.1.5
 minimongo@1.0.8
+mizzao:build-fetcher@0.2.0
+mizzao:jquery-ui@1.11.2
 mobile-status-bar@1.0.3
 mongo@1.1.0
 oauth@1.1.4

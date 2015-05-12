@@ -60,8 +60,10 @@ var genArray = [
 
 if(Meteor.isClient) {
      console.log("Hi Client");
+
     
     Template.body.helpers({
+        
         firstName: function(){
             var user = Meteor.user(); 
             if (user) {
@@ -93,13 +95,16 @@ if(Meteor.isClient) {
                 } else{
                 return false;
                 }
+        },
+        
+         myPoints: function() {
+            return Meteor.user().profile;
         }
         
 });
 
     Template.points.helpers({
         pointInfo: function() {
-            console.log("Point Displayed");
             return Meteor.users.find({}, {sort:{profile: {playPoints: -1, studyPoints: -1, socialPoints: -1, sleepPoints: -1, healthPoints: -1, name: 1}}});
         },
         users: function(){
@@ -116,7 +121,7 @@ if(Meteor.isClient) {
         photoURL: function(){
             return this.services.google.picture;
         }
-        
+
         
                                       
     });
@@ -180,6 +185,7 @@ if(Meteor.isClient) {
 
 
     });
+    
 }
 
 if(Meteor.isServer){

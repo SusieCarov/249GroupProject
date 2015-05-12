@@ -5,10 +5,33 @@
 <body>
     
     {{#if currentUser}}
+       <div class="loginB">
          {{>loginButtons}}
-    <p><img src="{{profileURL}}" width=30> 
-            Hello, {{firstName}}!</p>
-         {{>points}}
+           
+        <div id="profile">  
+    
+    
+            <a href="#" data-reveal-id="myModal">My Points</a>
+            
+           <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+              <h2 id="modalTitle"><img src="{{profileURL}}" width=30> 
+              Hi {{firstName}}!</h2>
+               
+               <p class="lead"> See how you are doing! </p> 
+               
+               <p> Play Points: {{myPoints.playPoints}} </p>
+               <p> Social Points: {{myPoints.socialPoints}}</p>
+               <p> Sleep Points: {{myPoints.sleepPoints}}</p>
+               <p> Study Points: {{myPoints.studyPoints}}</p>
+               <p> Health Points: {{myPoints.healthPoints}} </p>
+               
+               <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </div>
+            
+         </div>  
+        </div>
+    
+    {{>points}}
          <div class="container">
 	       <div class="jumbotron">
 		      {{> dialogBox}}
@@ -29,7 +52,7 @@
     
     
     {{else}}
-      <div id="loginB">
+      <div class="loginB">
         {{>loginButtons align="right"}}
     </div>
     {{/if}}
@@ -86,51 +109,69 @@
 
 </template>
 
-<template name="points">
-    <div class='leaderboard'>
-        <h1>Leaderboard</h1>
-        <ul class="inline-list">
-            <li class="header" id="play"> Play Point Ranking
-                <ul>
-                    {{#each pointInfo}}
-                        <li>
-                            <img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.playPoints}}</li>
-                    {{/each}}
-                </ul>
-            </li>
-        
-            <li class="header" id="social"> Social Point Ranking
-                <ul>
-                    {{#each pointInfo}}
-                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.socialPoints}} </li>
-                    {{/each}}
-                </ul>
-            </li>
-            <li class="header" id="study"> Study Point Ranking 
-                <ul>
-                    {{#each pointInfo}}
-                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.studyPoints}} </li>
-                    {{/each}}
-                </ul>
-            </li>
-            <li class="header" id="sleep"> Sleep Point Ranking 
-                <ul>
-                    {{#each pointInfo}}
-                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.sleepPoints}} </li>
-                    {{/each}}
-                </ul>
-            </li>
-            <li class="header" id="health"> Health Point Ranking
-                <ul>
-                    {{#each pointInfo}}
-                        <li><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.healthPoints}} </li>
-                    {{/each}}
-                </ul>
-            </li>
-   
-    </ul>
 
+<template name="points">
     
+    <div class='leaderboard'>
+        <h3>Leaderboard</h3>
+   
+    <dl class="accordion" data-accordion>  
+        
+        <dd class="accordion-navigation">
+    <a href="#panel1a"> Play Point Ranking </a>
+    <div id="panel1a" class="content active">
+                
+                    {{#each pointInfo}}
+                        <p>
+                            <img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.playPoints}}</p>
+                    {{/each}}
+            
+        </div>
+        </dd>
+        
+        <dd class="accordion-navigation">
+    <a href="#panel2a"> Social Point Ranking </a>
+    <div id="panel2a" class="content">
+        
+                    {{#each pointInfo}}
+                        <p><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.socialPoints}} </p>
+                    {{/each}}
+                
+        </div>
+        </dd>
+        
+         
+        <dd class="accordion-navigation">
+    <a href="#panel3a"> Study Point Ranking </a>
+    <div id="panel3a" class="content">
+            
+                    {{#each pointInfo}}
+                        <p><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.studyPoints}} </p>
+                    {{/each}}
     
-</div>    
+           </div>
+        </dd>
+    
+        <dd class="accordion-navigation">
+    <a href="#panel4a"> Sleep Point Ranking </a>
+    <div id="panel4a" class="content">
+                    {{#each pointInfo}}
+                        <p><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.sleepPoints}} </p>
+                    {{/each}}
+            
+         </div>
+        </dd>
+           
+        <dd class="accordion-navigation">
+    <a href="#panel5a"> Healht Point Ranking </a>
+    <div id="panel5a" class="content">
+        
+                    {{#each pointInfo}}
+                        <p><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.healthPoints}} </p>
+                    {{/each}}
+      </div>
+        </dd>
+    
+        </dl>
+ </div>       
 </template>
