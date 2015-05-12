@@ -82,7 +82,7 @@ if(Meteor.isClient) {
 
 
 if(Meteor.isServer){
-    
+
   Meteor.publish("TasksList", function() {
     if (TasksList.find().count() == 0) {
       Meteor.call('insertTaskData');

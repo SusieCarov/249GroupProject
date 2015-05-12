@@ -8,4 +8,6 @@ meteor-platform
 autopublish
 insecure
 accounts-ui
-accounts-password
+accounts-base
+accounts-google
+nsmeta:zurb-foundation
