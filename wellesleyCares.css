@@ -1,14 +1,48 @@
+/* CSS declarations go here */
+
 body {
-  background: url("symphony.png");
+  background: url('symphony.png');
+  text-align: center;
 }
 
 h1 {
   font-family: Pacifico;
   text-align: center;
-  font-size: 3rem;
+  font-size: 6rem;
 }
 
 img {
-  max-height: 200px;
+  height: 75vh;
+}
 
+.tasks {
+  position: absolute;
+  top: 15%;
+  left: 18%;
+  z-index: 10;
+  text-align: left;
+  
+}
+
+.taskmenu {
+  position: relative;
+}
+
+h2 {
+  font-family: Pacifico;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.flower {
+  height: 90vh;
+}
+
+.points {
+	align: right;
+  width: 200px;
+}
+
+.login {
+  margin-top: 30px;
 }
