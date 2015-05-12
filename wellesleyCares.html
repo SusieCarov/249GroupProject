@@ -6,13 +6,36 @@
 </head>
 
 <body>  
-  
-  <div class="row">
+    {{#if currentUser}}
+      <div class="row">
     <div class="large-2 medium-2 columns login large-uncentered">
       <a class="button secondary ">
      {{> loginButtons}} 
         </a>
     </div>
+          
+          <div id="profile">  
+    
+    
+            <a href="#" data-reveal-id="myModal">My Points</a>
+            
+           <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+              <h2 id="modalTitle"><img src="{{profileURL}}" width=30> 
+              Hi {{firstName}}!</h2>
+               
+               <p class="lead"> See how you are doing! </p> 
+               
+               <p> Play Points: {{myPoints.playPoints}} </p>
+               <p> Social Points: {{myPoints.socialPoints}}</p>
+               <p> Sleep Points: {{myPoints.sleepPoints}}</p>
+               <p> Study Points: {{myPoints.studyPoints}}</p>
+               <p> Health Points: {{myPoints.healthPoints}} </p>
+               
+               <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </div>
+            
+         </div>  
+       
     <div class="large-10 medium-10 columns large-uncentered">
        
       <h1>Wellesley Cares</h1>
@@ -30,6 +53,33 @@
       {{>todayTasks}}
     </div>
   </div>
+       
+        
+    
+    {{>points}}
+
+
+    
+        {{#if userhaspoints}}
+            {{pointsImplemented}}
+            
+        {{else}}
+            {{initializePoints}}
+            
+        {{/if}}
+    
+    
+    {{else}}
+    
+           <div class="large-2 medium-2 columns login large-uncentered">
+      <a class="button secondary ">
+     {{> loginButtons}} 
+        </a>
+    </div>
+
+    {{/if}}
+  
+
   
   
 </body>
@@ -84,4 +134,68 @@
   </li>
 </template>
 
-
+<template name="points">
+    
+    <div class='leaderboard'>
+        <h3>Leaderboard</h3>
+   
+    <dl class="accordion" data-accordion>  
+        
+        <dd class="accordion-navigation">
+    <a href="#panel1a"> Play Point Ranking </a>
+    <div id="panel1a" class="content active">
+                
+                    {{#each pointInfo}}
+                        <p>
+                            <img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.playPoints}}</p>
+                    {{/each}}
+            
+        </div>
+        </dd>
+        
+        <dd class="accordion-navigation">
+    <a href="#panel2a"> Social Point Ranking </a>
+    <div id="panel2a" class="content">
+        
+                    {{#each pointInfo}}
+                        <p><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.socialPoints}} </p>
+                    {{/each}}
+                
+        </div>
+        </dd>
+        
+         
+        <dd class="accordion-navigation">
+    <a href="#panel3a"> Study Point Ranking </a>
+    <div id="panel3a" class="content">
+            
+                    {{#each pointInfo}}
+                        <p><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.studyPoints}} </p>
+                    {{/each}}
+    
+           </div>
+        </dd>
+    
+        <dd class="accordion-navigation">
+    <a href="#panel4a"> Sleep Point Ranking </a>
+    <div id="panel4a" class="content">
+                    {{#each pointInfo}}
+                        <p><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.sleepPoints}} </p>
+                    {{/each}}
+            
+         </div>
+        </dd>
+           
+        <dd class="accordion-navigation">
+    <a href="#panel5a"> Healht Point Ranking </a>
+    <div id="panel5a" class="content">
+        
+                    {{#each pointInfo}}
+                        <p><img src="{{photoURL}}" width=50> <span>{{username}}</span>: {{profile.healthPoints}} </p>
+                    {{/each}}
+      </div>
+        </dd>
+    
+        </dl>
+ </div>       
+</template>
