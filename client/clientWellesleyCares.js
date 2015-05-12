@@ -17,12 +17,11 @@ TasksList = new Mongo.Collection("tasks");
       },
       'healthTask': function() {
         return TasksList.findOne({category: "Health"});
-      }
+      },
     });
   
      Template.bonus.events({
       "click .toggle-checked": function () {
-        
         // Set the checked property to the opposite of its current value
         TasksList.update(this._id, {$set: {checked: ! this.checked}});
       },

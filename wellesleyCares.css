@@ -46,3 +46,16 @@ h2 {
 .login {
   margin-top: 30px;
 }
+
+.leaderboard {
+    position: relative;
+    width: 70%;
+    margin: 0 auto;
+    text-aligh: center;
+    padding: 20px;
+}
+
+.leaderboard img {
+    width: 50px;
+    height: 50px;
+}
