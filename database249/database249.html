@@ -6,20 +6,46 @@
 
 <div class="container">
 	<div class="jumbotron">
-		{{> pointBox}}
+		{{> flower}}
+<!-- 		{{> pointBox}}
 		<br><br>
-		{{> dialogBox}}
+		{{> modal}}
 		<br><br>
 	    {{> allTasks}}
-	    <br><br>
-	    {{> random}}
+	    <br><br> -->
     </div>
 </div>
 
 </body>
 
-<template name="random">
-	{{randomTasks}}
+<template name="flower">
+	<div class="flower">
+		<p>{{createFlower}}</p>
+<!-- 		<svg height="200" width="110">
+		  <ellipse name="petal 1" cx="55" cy="100" rx="50" ry="100"
+		  style="fill:red" />
+		</svg>
+		
+		<svg height="200" width="110">
+		  <ellipse name="petal 2" cx="55" cy="100" rx="50" ry="100"
+		  style="fill:red" />
+		</svg>
+		
+		<svg height="200" width="110">
+		  <ellipse name="petal 3" cx="55" cy="100" rx="50" ry="100"
+		  style="fill:red" />
+		</svg>
+		
+		<svg height="200" width="110">
+		  <ellipse name="petal 4" cx="55" cy="100" rx="50" ry="100"
+		  style="fill:red" />
+		</svg>
+		
+		<svg height="200" width="110">
+		  <ellipse name="petal 5" cx="55" cy="100" rx="50" ry="100"
+		  style="fill:red" />
+		</svg> -->
+	</div>
 </template>
 
 <template name="pointBox">
@@ -30,12 +56,15 @@
 	</div>
 </template>
 
-<template name="dialogBox">
-	<div class="range-slider" data-slider data-options="start: 0; end: 24;">
-	  <span class="range-slider-handle" role="slider" tabindex="0"></span>
-	  <span class="range-slider-active-segment"></span>
-	  <input type="hidden">
-	</div>
+<template name="modal">
+	<a href="#" data-reveal-id="myModal">Click Me For A Modal</a>
+		<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+			<div class="range-slider" data-slider data-options="start: 0; end: 24; display_selector: #sliderOutput3;">
+			  <span class="range-slider-handle" role="slider" tabindex="0"><span id="sliderOutput3"></span></span>
+			  <span class="range-slider-active-segment"></span>
+			  <input type="hidden">
+			</div>
+		</div>
 </template>
 
 <template name="allTasks">

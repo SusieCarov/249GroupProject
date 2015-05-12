@@ -58,6 +58,9 @@ var genArray = [
   {text: "Went outside!", category: "Play", points: 5}];
 
 if(Meteor.isClient) {
+
+  Session.set("flowerPetals", 0);
+
     Template.pointBox.helpers({
       
       'userPoints': function() {
@@ -66,18 +69,142 @@ if(Meteor.isClient) {
 
     });
 
-    Template.random.helpers({
+    // Template.random.helpers({
 
-      'randomTasks': function() {
-        var results = [];
-        while (results.length < 4) {
-          var j = Math.floor(Math.random() * TasksList.find().count());
-          // if (TasksList.find({text: tasksArray[j].text}).fetch()[0].checked == false) {
-            results.push(TasksList.find({text: tasksArray[j].text}).fetch()[0].text);
-          // }
-        }
-        return results;
-      },
+    //   'randomTasks': function() {
+    //     var results = [];
+    //     while (results.length < 4) {
+    //       var j = Math.floor(Math.random() * TasksList.find().count());
+    //       // if (TasksList.find({text: tasksArray[j].text}).fetch()[0].checked == false) {
+    //         results.push(TasksList.find({text: tasksArray[j].text}).fetch()[0].text);
+    //       // }
+    //     }
+    //     return results;
+    //   },
+
+    // });
+
+    Template.flower.helpers({
+    //   createFlower: function(e) {
+    //     // var petals = document.getElementsByClassName("flower");
+    //     for (i = 0; i < 5; i++) {
+    //       var svgDoc = e.target.ownerDocument;
+    //       var shape = svgDoc.createElementNS(svgns, "circle");
+
+    //       console.log("inside");
+    //       // var petal = document.getElementsByName(i);
+    //       // console.log(petal);
+
+    //       var radius = 83;
+    //       var centerX = 170;
+    //       var centerY = 160;
+                    
+    //       shape.setAttributeNS(null, "r", radius);
+
+    //       var xPosition = radius * Math.cos(2 * Math.PI * i / 5) + centerX;
+    //       var yPosition = radius * Math.sin(2 * Math.PI * i / 5) + centerY;
+          
+    //       shape.setAttributeNS(null, "cx", xPosition);
+    //       shape.setAttributeNS(null, "cy", yPosition);
+
+    //       console.log(shape);
+
+    //       var ellipseHeight = 70;
+
+    //       shape.setAttributeNS(null, "rx", ellipseHeight/2);
+    //       shape.setAttributeNS(null, "ry", ellpiseHeight);
+    //     }
+    //       // var petalEllipse = this.paper.ellipse(xPosition, yPosition, 30, ellipseHeight);
+       
+    //       // var angle = null;
+       
+    //       // if(xPosition !== centerX){
+      
+    //       //     var triangle =  Template.flower.__helpers("TrianglePointsToDegrees")(xPosition, yPosition, centerX, centerY, xPosition, yPosition + ellipseHeight);
+               
+    //       //     if(xPosition > centerX){
+    //       //         angle = triangle.cDegree();
+    //       //      }
+    //       //      else{
+    //       //         angle = -triangle.cDegree();
+    // //       //      }
+    // //  }
+ 
+    // // //rotate ellipse around center
+    // // if(angle){
+    // //     petalEllipse.transform("r" + angle);
+    // // }
+    // //     }
+    //   },
+
+    //   lineDistance: function( point1, point2 ){
+    //     var xs = 0;
+    //     var ys = 0;
+ 
+    //     xs = point2.x - point1.x;
+    //     xs = xs * xs;
+ 
+    //     ys = point2.y - point1.y;
+    //     ys = ys * ys;
+ 
+    //     return Math.sqrt( xs + ys );
+    //   },
+
+    //   TrianglePointsToDegrees: function(x1, y1, x2, y2, x3, y3){    
+    //     log("create points");
+     
+    //     var point1 = {"x": x1, "y": y1};
+    //     var point2 = {"x": x2, "y": y2};
+    //     var point3 = {"x": x3, "y": y3};
+     
+    //     log("create triangle edges");
+     
+    //     var edgeA = {};
+    //     edgeA.points = [point3, point1];
+    //     edgeA.distance = lineDistance(point3, point1);
+     
+    //     this.edgeA = function(){
+    //         return edgeA;
+    //     };
+ 
+    //     var edgeB = {};
+    //     edgeB.points = [point1, point2];
+    //     edgeB.distance = lineDistance(point1, point2);
+     
+    //     this.edgeB = function(){
+    //         return edgeB;
+    //     };
+     
+    //     var edgeC = {};
+    //     edgeC.points = [point2, point3];
+    //     edgeC.distance = lineDistance(point2, point3);
+     
+    //     this.edgeC = function(){
+    //         return edgeC;
+    //     };
+     
+    //     var sidea = edgeA.distance;
+    //     var sideb = edgeB.distance;
+    //     var sidec = edgeC.distance;
+     
+    //     log("calc angles");
+ 
+    //     var anga = Math.acos((-sidea*sidea+sideb*sideb+sidec*sidec)/(2*sideb*sidec));
+    //     var angb = Math.acos((-sideb*sideb+sidea*sidea+sidec*sidec)/(2*sidea*sidec));
+    //     var angc = Math.acos((-sidec*sidec+sidea*sidea+sideb*sideb)/(2*sidea*sideb));
+     
+    //     this.aDegree = function(){
+    //         return anga*180/Math.PI;
+    //     };
+     
+    //     this.bDegree = function(){
+    //         return angb*180/Math.PI;
+    //     };
+     
+    //     this.cDegree = function(){
+    //         return angc*180/Math.PI;
+    //     };
+    //   },
 
     });
 
