@@ -35,16 +35,19 @@ TasksList = new Mongo.Collection("tasks");
               console.log("Social bonus task is selected");
               Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.socialPoints": 15}});
               TasksList.remove(this._id);
+               $('input:checkbox').attr('checked',false);
+              
           } else if (this.category == "Play") {
               console.log("Play bonus task is selected");
               Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.playPoints": 15}});
               TasksList.remove(this._id);
+               $('input:checkbox').attr('checked',false);
     
           } else {
               console.log("Health bonus task is selected");
               Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.healthPoints": 15}});
               TasksList.remove(this._id);
-             
+              $('input:checkbox').attr('checked',false);
               //health
           }
          
@@ -52,6 +55,27 @@ TasksList = new Mongo.Collection("tasks");
       },
       "click .delete": function () {
         TasksList.remove(this._id);
+            if (this.category == "Study"){
+              console.log("Study bonus task skipped");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.studyPoints": -5}});
+              TasksList.remove(this._id);
+          } else if (this.category == "Social") {
+              console.log("Social bonus task skipped");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.socialPoints": -5}});
+              TasksList.remove(this._id);
+              
+          } else if (this.category == "Play") {
+              console.log("Play bonus task skipped");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.playPoints": -5}});
+              TasksList.remove(this._id);
+    
+          } else {
+              //health
+              console.log("Health bonus task skipped");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.healthPoints": -5}});
+              TasksList.remove(this._id);
+              
+          }
        // TasksList.update(this._id, {$set: {skipped: true}});
       }
     });
@@ -136,25 +160,5 @@ TasksList = new Mongo.Collection("tasks");
     'click #petal5': function(){
         console.log("You clicked petal5");
     }
-  });
-
-    Template.modals.helpers({
-
-    socialTask: function() {
-      return GenTasksList.find({"category": "Social"}).fetch();
-    },
-
-    playTask: function() {
-      return GenTasksList.find({"category": "Play"}).fetch();
-    },     
-
-    studyTask: function() {
-      return GenTasksList.find({"category": "Study"}).fetch();
-    },      
-
-    healthTask: function() {
-      return GenTasksList.find({"category": "Health"}).fetch();
-    },
-
   });
   
