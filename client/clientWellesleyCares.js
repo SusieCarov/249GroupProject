@@ -30,24 +30,24 @@ TasksList = new Mongo.Collection("tasks");
               console.log("Study bonus task is selected");
               Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.studyPoints": 15}});
               TasksList.remove(this._id);
-              console.log(this._id);
+               $('input:checkbox').attr('checked',false);
           } else if (this.category == "Social") {
               console.log("Social bonus task is selected");
               Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.socialPoints": 15}});
               TasksList.remove(this._id);
-              TasksList.update(this._id, {$set: {checked: false}});
           } else if (this.category == "Play") {
               console.log("Play bonus task is selected");
               Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.playPoints": 15}});
               TasksList.remove(this._id);
-              TasksList.update(this._id, {$set: {checked: false}});
+    
           } else {
               console.log("Health bonus task is selected");
               Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.healthPoints": 15}});
               TasksList.remove(this._id);
-              TasksList.update(this._id, {$set: {checked: false}});
+             
               //health
           }
+         
         //TasksList.remove(this._id);
       },
       "click .delete": function () {
