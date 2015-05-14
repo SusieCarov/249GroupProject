@@ -137,4 +137,24 @@ TasksList = new Mongo.Collection("tasks");
         console.log("You clicked petal5");
     }
   });
+
+    Template.modals.helpers({
+
+    socialTask: function() {
+      return GenTasksList.find({"category": "Social"}).fetch();
+    },
+
+    playTask: function() {
+      return GenTasksList.find({"category": "Play"}).fetch();
+    },     
+
+    studyTask: function() {
+      return GenTasksList.find({"category": "Study"}).fetch();
+    },      
+
+    healthTask: function() {
+      return GenTasksList.find({"category": "Health"}).fetch();
+    },
+
+  });
   

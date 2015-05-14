@@ -1,4 +1,5 @@
 TasksList = new Mongo.Collection("tasks");
+GenTasksList = new Mongo.Collection("genTasks");
 
 var tasksArray = [
   {text: "Tried a dining hall I don’t normally go to", category: "Eat" }, {text: "Walk around lake", category: "Health" },
@@ -41,45 +42,85 @@ var tasksArray = [
   {text: "Host a Prospie", category: "Social"},  {text: "Buy something on Free and For Sale", category: "Play"}, 
   {text: "Sell something on Free and For Sale", category: "Play"},  {text: "Therapy Dogs!", category: "Health"}, 
   {text: "Study in Sage Lounge Science Center", category: "Study"}];
+
+
+var genArray = [
+  {text: "Took a nap", category: "Sleep", points: 3}, {text: "Hung out with friends", category: "Social", points: 5},
+  {text: "Called home, whatever that may be to you", category: "Social", points: 6}, {text: "Left campus!", category: "Social", points: 10},
+  {text: "Finished homework before midnight", category: "Study", points: 3}, {text: "Studied for Test", category: "Study", points: 3},
+  {text: "Participated in class", category: "Study", points: 2}, {text: "Went to class", category: "Study", points: 1},
+  {text: "Ate all 3 meals!", category: "Health", points: 8},
+  {text: "Exercised", category: "Health", points: 10}, {text: "Took a shower", category: "Health", points: 1},
+  {text: "Took medication (if needed)", category: "Health", points: 1}, {text: "Brushed teeth twice today", category: "Health", points: 2},
+  {text: "Read a book for fun", category: "Play", points: 5}, {text: "Listened to music", category: "Play", points: 2},
+  {text: "Went outside!", category: "Play", points: 5}];
+
 //      Meteor.call('insertTaskData');
- for (i in tasksArray) {
-          console.log("inside for loop");
-            TasksList.insert({
-              text: tasksArray[i].text,
-              points: 15,
-              category: tasksArray[i].category
-            });
-        }
+if (TasksList.find().count() == 0) {
+  for (i in tasksArray) {
+    console.log("inside for loop");
+      TasksList.insert({
+        text: tasksArray[i].text,
+        points: 15,
+        category: tasksArray[i].category
+      });
+  }  
+}
 
-  Meteor.publish("TasksList", function() {
-    
-      Meteor.call('insertTaskData');
-    
-    return TasksList.find({});
-  });
-  
-  Meteor.methods({
+Meteor.publish("TasksList", function() {
+  Meteor.call("insertTaskData");
+  return TasksList.find().fetch();
+})
 
-    //method
-    'insertTaskData': function(){
-      if (TasksList.find().count() == 0) {
-        for (i in tasksArray) {
-          console.log("inside for loop");
-            TasksList.insert({
-              text: tasksArray[i].text,
-              points: 15,
-              category: tasksArray[i].category
-            });
-        }
+if (GenTasksList.find().count() == 0) {
+  for (i in genArray) {
+    GenTasksList.insert({
+      content: genArray[i].text,
+      points: genArray[i].points,
+      category: genArray[i].category,
+      checked: false
+    });
+  }
+}
+
+Meteor.publish("GenTasksList", function() {
+  Meteor.call("insertGenericData");
+  return GenTasksList.find().fetch();
+}) 
+
+Meteor.methods({
+  'insertTaskData': function(){
+    if (TasksList.find().count() == 0) {
+      for (i in tasksArray) {
+        console.log("inside for loop");
+          TasksList.insert({
+            text: tasksArray[i].text,
+            points: 15,
+            category: tasksArray[i].category
+          });
       }
-    },
+    }
+  },
 
-    //another method
-    'removeAllTasks': function() {
-        return TasksList.remove({});
-    },
+  'insertGenericData': function(){
+    if (GenTasksList.find().count() == 0) {
+      for (i in genArray) {
+        GenTasksList.insert({
+          content: genArray[i].text,
+          points: genArray[i].points,
+          category: genArray[i].category,
+          checked: false
+        });
+      }
+    }
+  },
 
-    //another method
-  });
+  'removeAllTasks': function() {
+      return TasksList.remove({});
+  },
 
+  'removeAllGenTasks': function() {
+    return GenTasksList.remove({});
+  }
 
+});

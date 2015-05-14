@@ -233,3 +233,75 @@
         </dl>
  </div>       
 </template>
+
+<template name="modals">
+
+  <a href="#" data-reveal-id="socialModal">Social Tasks</a>
+  <div id="socialModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">How social were you today?</h2>
+    {{#each socialTask}}
+      <input class="checks" id="healthCheck" type="checkbox"><label for="healthCheck">{{content}}</label><br>
+    {{/each}}
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+
+  <a href="#" data-reveal-id="playModal">Play Tasks</a>
+  <div id="playModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">How much did you play today?</h2>
+    {{#each playTask}}
+      <input class="checks" id="healthCheck" type="checkbox"><label for="healthCheck"><span class="checks">{{content}}</span></label><br>
+    {{/each}}
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+
+  <a href="#" data-reveal-id="studyModal">Study Tasks</a>
+  <div id="studyModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">How much did you study today?</h2>
+    {{#each studyTask}}
+      <input class="checks" id="healthCheck" type="checkbox"><label for="healthCheck">{{content}}</label><br>
+    {{/each}}
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+
+  <a href="#" data-reveal-id="healthModal">Health Tasks</a>
+  <div id="healthModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">How healthy were you today?</h2>
+    {{#each healthTask}}
+      <input class="checks" id="healthCheck" type="checkbox"><label for="healthCheck">{{content}}</label><br>
+    {{/each}}
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+
+  <a href="#" data-reveal-id="sleepModal">Sleep Tasks</a>
+  <div id="sleepModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+    <h2 id="modalTitle">How did you sleep?</h2>
+<!--     <div class="range-slider" data-slider data-options="start: 0; end: 24; display_selector: #sliderOutput3;" >
+      <span class="range-slider-handle" role="slider" tabindex="0"><span id="sliderOutput3"></span></span>
+      <span class="range-slider-active-segment"></span>
+      <input type="hidden">
+    </div> -->
+    <div class="row">
+      <div class="small-10 medium-11 columns">
+        <div class="range-slider" data-slider data-options="display_selector: #sliderOutput3;">
+          <span class="range-slider-handle" role="slider" tabindex="0"></span>
+          <span class="range-slider-active-segment"></span>
+        </div>
+      </div>
+      <div class="small-2 medium-1 columns">
+        <span id="sliderOutput3"></span>
+      </div>
+    </div>
+
+    <div class="switch">
+      <input id="exampleCheckboxSwitch" type="checkbox">
+      <label for="exampleCheckboxSwitch">Did you take a nap today?</label>
+    </div>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  </div>
+
+  <a href="#" data-reveal-id="congrats">Congratulations</a>
+  <div id="congrats" class="reveal-modal" data-reveal aria-labelledby="modateTitle" aria-hidden="true" role="dialog">
+    <h3>Congratulations! You have earned some points!</h3>
+  </div>
+ 
+</template>
