@@ -19,11 +19,36 @@ TasksList = new Mongo.Collection("tasks");
         return TasksList.findOne({category: "Health"});
       },
     });
+
+  
   
      Template.bonus.events({
       "click .toggle-checked": function () {
         // Set the checked property to the opposite of its current value
         TasksList.update(this._id, {$set: {checked: ! this.checked}});
+          if (this.category == "Study"){
+              console.log("Study bonus task is selected");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.studyPoints": 15}});
+              TasksList.remove(this._id);
+              console.log(this._id);
+          } else if (this.category == "Social") {
+              console.log("Social bonus task is selected");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.socialPoints": 15}});
+              TasksList.remove(this._id);
+              TasksList.update(this._id, {$set: {checked: false}});
+          } else if (this.category == "Play") {
+              console.log("Play bonus task is selected");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.playPoints": 15}});
+              TasksList.remove(this._id);
+              TasksList.update(this._id, {$set: {checked: false}});
+          } else {
+              console.log("Health bonus task is selected");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.healthPoints": 15}});
+              TasksList.remove(this._id);
+              TasksList.update(this._id, {$set: {checked: false}});
+              //health
+          }
+        //TasksList.remove(this._id);
       },
       "click .delete": function () {
         TasksList.remove(this._id);
