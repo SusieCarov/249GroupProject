@@ -11,10 +11,6 @@ h1 {
   font-size: 6rem;
 }
 
-img {
-  height: 75vh;
-}
-
 .tasks {
   position: absolute;
   top: 15%;
@@ -35,7 +31,9 @@ h2 {
 }
 
 .flower {
-  height: 90vh;
+/*  background-image: url("flower.png");*/
+  width: 500px;
+  height: 1000px;
 }
 
 .points {
@@ -45,4 +43,34 @@ h2 {
 
 .login {
   margin-top: 30px;
+}
+
+svg { 
+  position: absolute;
+  font-family: Pacifico;
+  font-size: 40px;
+}
+
+#petal1 {
+  top: 50px;
+  left: 160px;
+}
+
+#petal2 {
+  top: 130px;
+  left: 300px;
+}
+
+#petal3 {
+  top: 180px;
+  left: 20px;
+}
+
+#petal4 {
+  top: 310px;
+}
+
+#petal5 {
+  top:350px;
+  left: 100px;
 }

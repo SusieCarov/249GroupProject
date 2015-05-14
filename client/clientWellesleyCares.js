@@ -31,4 +31,10 @@ TasksList = new Mongo.Collection("tasks");
        // TasksList.update(this._id, {$set: {skipped: true}});
       }
     });
+
+  Template.flower.events({
+    "click": function(e) {
+      console.log(e.pageX, e.pageY);
+    }
+  });
   
