@@ -33,8 +33,20 @@ TasksList = new Mongo.Collection("tasks");
     });
 
   Template.flower.events({
-    "click": function(e) {
-      console.log(e.pageX, e.pageY);
+    'click #petal1': function(){
+        console.log("You clicked petal1");
+    },
+    'click #petal2': function(){
+        console.log("You clicked petal2");
+    },
+    'click #petal3': function(){
+        console.log("You clicked petal3");
+    },
+    'click #petal4': function(){
+        console.log("You clicked petal4");
+    },
+    'click #petal5': function(){
+        console.log("You clicked petal5");
     }
   });
   
