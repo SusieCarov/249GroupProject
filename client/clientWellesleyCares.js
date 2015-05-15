@@ -1,4 +1,5 @@
 TasksList = new Mongo.Collection("tasks");
+GenTasksList = new Mongo.Collection("genTasks");
 
   Meteor.subscribe("TasksList");
   
@@ -138,7 +139,7 @@ TasksList = new Mongo.Collection("tasks");
     }
   });
 
-    Template.modals.helpers({
+  Template.modals.helpers({
 
     socialTask: function() {
       return GenTasksList.find({"category": "Social"}).fetch();

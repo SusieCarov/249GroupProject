@@ -6,9 +6,11 @@
 </head>
 
 <body>  
+    {{> modals}}
+
     {{#if currentUser}}
       <div class="row">
-    <div class="large-2 medium-2 columns login large-uncentered">
+      <div class="large-2 medium-2 columns login large-uncentered">
       <a class="button secondary ">
      {{> loginButtons}} 
         </a>
@@ -16,25 +18,23 @@
           
           <div id="profile">  
     
-    
-            <a href="#" data-reveal-id="myModal">My Points</a>
-            
-           <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-              <h2 id="modalTitle"><img src="{{profileURL}}" width=30> 
-              Hi {{firstName}}!</h2>
-               
-               <p class="lead"> See how you are doing! </p> 
-               
-               <p> Play Points: {{myPoints.playPoints}} </p>
-               <p> Social Points: {{myPoints.socialPoints}}</p>
-               <p> Sleep Points: {{myPoints.sleepPoints}}</p>
-               <p> Study Points: {{myPoints.studyPoints}}</p>
-               <p> Health Points: {{myPoints.healthPoints}} </p>
-               
-               <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            <a href="#" data-reveal-id="pointsModal">My Points</a>
+            <div id="pointsModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                <h2 id="modalTitle"><img src="{{profileURL}}" width=30> 
+                Hi {{firstName}}!</h2>
+                 
+                 <p class="lead"> See how you are doing! </p> 
+                 
+                 <p> Play Points: {{myPoints.playPoints}} </p>
+                 <p> Social Points: {{myPoints.socialPoints}}</p>
+                 <p> Sleep Points: {{myPoints.sleepPoints}}</p>
+                 <p> Study Points: {{myPoints.studyPoints}}</p>
+                 <p> Health Points: {{myPoints.healthPoints}} </p>
+                 
+                 <a class="close-reveal-modal" aria-label="Close">&#215;</a>
             </div>
             
-         </div>  
+         </div>
        
     <div class="large-10 medium-10 columns large-uncentered">
        
@@ -139,31 +139,37 @@
 
 <template name="flower">
   <img class="flower" src="flower.png" alt="flower">
-  <svg width="100" height="100" id="petal1">
-    <text x="10" y="45" fill="black">Play</text>
-  </svg>
-  <svg width="200" height="100" id="petal2">
-    <text x="10" y="45" fill="black">Sleep</text>
-  </svg>
-  <svg width="180" height="100" id="petal3">
-    <text x="10" y="45" fill="black">Health</text>
-  </svg>
-  <a href="#" data-reveal-id="myModal">
-  <svg width="150" height="100" id="petal4">
-    <text x="10" y="45" fill="black">Social</text>
-  </svg>
+
+  <a href="#" data-reveal-id="playModal">
+    <svg width="100" height="100" id="petal1">
+      <text x="10" y="45" fill="black">Play</text>
+    </svg>
   </a>
 
-  <svg width="200" height="100" id="petal5">
-    <text x="10" y="45" fill="black">Study</text>
-  </svg>
-  
-  <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-  <h2 id="modalTitle">Awesome. I have it.</h2>
-  <p class="lead">Your couch.  It is mine.</p>
-  <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-</div>
+  <a href="#" data-reveal-id="sleepModal">
+    <svg width="200" height="100" id="petal2">
+      <text x="10" y="45" fill="black">Sleep</text>
+    </svg>
+  </a>
+
+  <a href="#" data-reveal-id="healthModal">
+    <svg width="180" height="100" id="petal3">
+      <text x="10" y="45" fill="black">Health</text>
+    </svg>
+  </a>
+
+  <a href="#" data-reveal-id="socialModal">
+    <svg width="150" height="100" id="petal4">
+      <text x="10" y="45" fill="black">Social</text>
+    </svg>
+  </a>
+
+  <a href="#" data-reveal-id="studyModal">
+    <svg width="200" height="100" id="petal5">
+      <text x="10" y="45" fill="black">Study</text>
+    </svg>
+  </a>
+
 </template>
 
 
@@ -236,7 +242,6 @@
 
 <template name="modals">
 
-  <a href="#" data-reveal-id="socialModal">Social Tasks</a>
   <div id="socialModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h2 id="modalTitle">How social were you today?</h2>
     {{#each socialTask}}
@@ -245,7 +250,6 @@
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 
-  <a href="#" data-reveal-id="playModal">Play Tasks</a>
   <div id="playModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h2 id="modalTitle">How much did you play today?</h2>
     {{#each playTask}}
@@ -254,7 +258,6 @@
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 
-  <a href="#" data-reveal-id="studyModal">Study Tasks</a>
   <div id="studyModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h2 id="modalTitle">How much did you study today?</h2>
     {{#each studyTask}}
@@ -263,7 +266,6 @@
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 
-  <a href="#" data-reveal-id="healthModal">Health Tasks</a>
   <div id="healthModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h2 id="modalTitle">How healthy were you today?</h2>
     {{#each healthTask}}
@@ -272,7 +274,6 @@
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 
-  <a href="#" data-reveal-id="sleepModal">Sleep Tasks</a>
   <div id="sleepModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
     <h2 id="modalTitle">How did you sleep?</h2>
 <!--     <div class="range-slider" data-slider data-options="start: 0; end: 24; display_selector: #sliderOutput3;" >
