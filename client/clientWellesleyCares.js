@@ -31,28 +31,52 @@ GenTasksList = new Mongo.Collection("genTasks");
               console.log("Study bonus task is selected");
               Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.studyPoints": 15}});
               TasksList.remove(this._id);
-              console.log(this._id);
+               $('input:checkbox').attr('checked',false);
           } else if (this.category == "Social") {
               console.log("Social bonus task is selected");
               Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.socialPoints": 15}});
               TasksList.remove(this._id);
-              TasksList.update(this._id, {$set: {checked: false}});
+               $('input:checkbox').attr('checked',false);
+              
           } else if (this.category == "Play") {
               console.log("Play bonus task is selected");
               Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.playPoints": 15}});
               TasksList.remove(this._id);
-              TasksList.update(this._id, {$set: {checked: false}});
+               $('input:checkbox').attr('checked',false);
+    
           } else {
               console.log("Health bonus task is selected");
               Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.healthPoints": 15}});
               TasksList.remove(this._id);
-              TasksList.update(this._id, {$set: {checked: false}});
+              $('input:checkbox').attr('checked',false);
               //health
           }
+         
         //TasksList.remove(this._id);
       },
       "click .delete": function () {
         TasksList.remove(this._id);
+            if (this.category == "Study"){
+              console.log("Study bonus task skipped");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.studyPoints": -5}});
+              TasksList.remove(this._id);
+          } else if (this.category == "Social") {
+              console.log("Social bonus task skipped");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.socialPoints": -5}});
+              TasksList.remove(this._id);
+              
+          } else if (this.category == "Play") {
+              console.log("Play bonus task skipped");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.playPoints": -5}});
+              TasksList.remove(this._id);
+    
+          } else {
+              //health
+              console.log("Health bonus task skipped");
+              Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.healthPoints": -5}});
+              TasksList.remove(this._id);
+              
+          }
        // TasksList.update(this._id, {$set: {skipped: true}});
       }
     });
