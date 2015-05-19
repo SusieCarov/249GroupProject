@@ -1,6 +1,9 @@
 TasksList = new Mongo.Collection("tasks");
 GenTasksList = new Mongo.Collection("genTasks");
 
+
+//these tasks are specific to Wellesley college - bonus tasks that
+//change each time you enter the app.
 var tasksArray = [
   {text: "Try a dining hall you don’t normally go to", category: "Eat" }, {text: "Walk around Lake Waban", category: "Health" },
   {text: "Swing on the chapel swing", category: "Play" }, {text: "Go to pub night", category: "Health" },
@@ -43,9 +46,9 @@ var tasksArray = [
   {text: "Sell something on Free and For Sale", category: "Play"},  {text: "Therapy Dogs!", category: "Health"}, 
   {text: "Study in Sage Lounge Science Center", category: "Study"}];
 
-
+//generic tasks always stay the same
 var genArray = [
-  {text: "I took a nap", category: "Sleep", points: 3}, {text: "I hung out with friends", category: "Social", points: 5},
+  {text: "I hung out with friends", category: "Social", points: 5},
   {text: "I called home", category: "Social", points: 6}, {text: "I left campus!", category: "Social", points: 10},
   {text: "I finished homework before midnight", category: "Study", points: 3}, {text: "I studied for Test", category: "Study", points: 3},
   {text: "I participated in class", category: "Study", points: 2}, {text: "I went to class", category: "Study", points: 1},
@@ -53,9 +56,10 @@ var genArray = [
   {text: "I exercised", category: "Health", points: 10}, {text: "I took a shower", category: "Health", points: 1},
   {text: "I took medication (if needed)", category: "Health", points: 1}, {text: "I brushed my teeth twice today", category: "Health", points: 2},
   {text: "I read a book for fun", category: "Play", points: 5}, {text: "I listened to some new music", category: "Play", points: 2},
-  {text: "I enjoyed the outdoors", category: "Play", points: 5}];
+  {text: "I enjoyed the outdoors", category: "Play", points: 5}, {text: "I slept at least 8 hours", category: "Sleep", points: 10}, 
+  {text: "I took a nice nap today", category: "Sleep", points: 3}];
 
-//      Meteor.call('insertTaskData');
+//populate TasksList
 if (TasksList.find().count() == 0) {
   for (i in tasksArray) {
     console.log("inside for loop");
@@ -67,11 +71,13 @@ if (TasksList.find().count() == 0) {
   }  
 }
 
+//publish it
 Meteor.publish("TasksList", function() {
   Meteor.call("insertTaskData");
   return TasksList.find().fetch();
 })
 
+//populate GenTasksList
 if (GenTasksList.find().count() == 0) {
   for (i in genArray) {
     GenTasksList.insert({
@@ -83,38 +89,16 @@ if (GenTasksList.find().count() == 0) {
   }
 }
 
+//publish it
 Meteor.publish("GenTasksList", function() {
   Meteor.call("insertGenericData");
   return GenTasksList.find().fetch();
 }) 
 
+
 Meteor.methods({
-  'insertTaskData': function(){
-    if (TasksList.find().count() == 0) {
-      for (i in tasksArray) {
-        console.log("inside for loop");
-          TasksList.insert({
-            text: tasksArray[i].text,
-            points: 15,
-            category: tasksArray[i].category
-          });
-      }
-    }
-  },
 
-  'insertGenericData': function(){
-    if (GenTasksList.find().count() == 0) {
-      for (i in genArray) {
-        GenTasksList.insert({
-          content: genArray[i].text,
-          points: genArray[i].points,
-          category: genArray[i].category,
-          checked: false
-        });
-      }
-    }
-  },
-
+  //remove methods just in case
   'removeAllTasks': function() {
       return TasksList.remove({});
   },
