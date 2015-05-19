@@ -183,3 +183,29 @@ GenTasksList = new Mongo.Collection("genTasks");
 
   });
   
+ Template.modals.events({
+     "click #playSubmit": function(){
+         var numberChecked = $("input:checkbox:checked").length;
+         var pointsToAdd = 15*numberChecked;
+        Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.playPoints": pointsToAdd}}); 
+         $('input:checkbox').attr('checked',false);
+     },
+      "click #healthSubmit": function(){
+         var numberChecked = $("input:checkbox:checked").length;
+         var pointsToAdd = 15*numberChecked;
+          Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.healthPoints": pointsToAdd}});
+          $('input:checkbox').attr('checked',false);
+     },
+      "click #socialSubmit": function(){
+         var numberChecked = $("input:checkbox:checked").length;
+         var pointsToAdd = 15*numberChecked;
+          Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.socialPoints": pointsToAdd}}); 
+          $('input:checkbox').attr('checked',false);
+     },
+      "click #studySubmit": function(){
+         var numberChecked = $("input:checkbox:checked").length;
+         var pointsToAdd = 15*numberChecked;
+          Meteor.users.update( { _id: Meteor.userId() }, {$inc:{ "profile.studyPoints": pointsToAdd}}); 
+          $('input:checkbox').attr('checked',false);
+     },
+ });
